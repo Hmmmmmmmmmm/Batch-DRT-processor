@@ -1,7 +1,5 @@
 # Unfinished
 # TODO
-[] Update installation guides
-[] Check for repo name
 [] Update citation info
 
 # DRT-batch Processor
@@ -16,28 +14,30 @@ A Python-based automated pipeline for processing Electrochemical Impedance Spect
 
 ## Installation
 
-1.  **Clone the repository**:
-    ```bash
-    git clone https://github.com/Hmmmmmmmmmm/Batch-DRT-processor.git
-    cd Batch-DRT-processor
-    ```
+1.  **Download the code**:
+    Right click the file named `drt_batch_processor.py` and save it to your working project folder.
 
-2.  **Create a virtual environment (Recommended)**:
+2.  **Installation of pyDRTtools library and dependencies using conda**:
+    In your terminal, run the following codes after installation of conda.
     ```
+    conda create -n DRT python=3.11
+    conda activate DRT
+    conda install -c pip ipython pandas matplotlib scikit-learn spyder cvxopt pyqt
+    pip install pyDRTtools
     ```
+    After the above commands, verify your installation by toggling the GUI of pyDRTtools by
+    ```
+    !launchGUI
+    ```
+    If a GUI instance popped up, your installation should be fine. 
 
-3.  **Install dependencies**:
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-## Usage
+## Usage for batch process
 
 1.  **Prepare your data**:
-    Create a project folder. Inside it, create a subfolder named `0_Raw_Input` and place your raw CHI `.txt` files there.
-
+    Create a new data folder, name it with your experiement details. Inside it, create a subfolder named `0_Raw_Input` and place your raw CHI `.txt` files there.
+    (Or if you run this script with a blank folder, it will create a new `0_Raw_Input` folder for you)
     ```text
-    Project_Folder/
+    Data_Folder/
     └── 0_Raw_Input/
         ├── file1.txt
         ├── file2.txt
@@ -45,14 +45,15 @@ A Python-based automated pipeline for processing Electrochemical Impedance Spect
     ```
 
 2.  **Configure the script**:
-    Open `drt_batch_processor.py` and update the `working_directory` variable at the bottom of the file to point to your `Project_Folder`.
+    Open `drt_batch_processor.py` and update the `working_directory` variable at the bottom of the file to point to your `Data_Folder`.
 
 3.  **Run the pipeline**:
+    In your terminal with DRT virtual environment activated, run
     ```bash
     python drt_batch_processor.py
     ```
 
-4.  **Output**:
+5.  **Output**:
     The script will generate the following folders:
     * `1_Trimmed_Data`: Cleaned EIS data.
     * `2_DRT_Output`: Individual DRT calculation results (Tau/Gamma).
@@ -63,6 +64,9 @@ A Python-based automated pipeline for processing Electrochemical Impedance Spect
 If you use this tool in your research, please cite:
 * **Code**: [Your Name]. (2025). CHI-DRT Batch Processor [Software]. Zenodo. https://doi.org/10.5281/zenodo.xxxxxx
 * **Method**: Wan, T. H., Saccoccio, M., Chen, C., & Ciucci, F. (2015). Influence of the discretization methods on the distribution of relaxation times deconvolution: implementing radial basis functions with DRTtools. *Electrochimica Acta*, 184, 483-499.
+
+## Links
+pyDRTtools: https://github.com/ciuccislab/pyDRTtools
 
 ## License
 
